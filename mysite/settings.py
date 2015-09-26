@@ -24,10 +24,11 @@ SECRET_KEY = 'ma78&6zta^qb))(^y-m=3ru2uhn=6leojgo#3km!mqg&ae63ix'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+TEMPLATE_DEBUG = True
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 ALLOWED_HOSTS = []
 
-
+# TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 # Application definition
 
 INSTALLED_APPS = (
@@ -101,3 +102,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
