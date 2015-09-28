@@ -1,0 +1,19 @@
+li a{
+	color: green;
+}
+
+
+/*<style>
+.tdStyle
+{
+background-image:url('{{ STATIC_URL }}images/background.gif');
+background-repeat:no-repeat;
+background-size:100%;
+}
+</style>*/
+
+body {
+   <td style="background: url('{{ STATIC_URL }}images/background.gif') no-repeat;"> 
+}
+
+ /*<td style="background: url('{{ STATIC_URL }}images/background.gif') no-repeat;"> */

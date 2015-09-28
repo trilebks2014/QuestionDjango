@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.core.urlresolvers import reverse
 from django.views import generic
-
+from django.utils import timezone
 # def IndexView(generic.ListView):
 # 	# latest_question_list = Question.objects.order_by('-pub_date')[:5]
 # 	# template = loader.get_template('polls/index.html')
@@ -27,7 +27,8 @@ class IndexView(generic.ListView):
 
 	def get_queryset(self):
 		"""Return the last five published questions."""
-		return Question.objects.order_by('-pub_date')[:5]
+		# return Question.objects.order_by('-pub_date')[:5]
+		return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
 
 # def DetailView(request, question_id):
 # 	# lasted_choice_list = Choice.objects.order_by()
@@ -54,7 +55,7 @@ def vote(request, question_id):
 		selected_choice = p.choice_set.get(pk=request.POST['choice'])
 	except (KeyError, Choice.DoesNotExist):
 		# Redisplay the question voting form.
-		return render(request, '/polls/detail.html', {
+		return render(request, 'polls/detail.html', {
 			'question': p,
 			'error_message': "You didn't select a choice.",
 		})
@@ -65,7 +66,6 @@ def vote(request, question_id):
 		# with POST data. This prevents data from being posted twice if a
 		# user hits the Back button.
 		return HttpResponseRedirect(reverse('results', args=(p.id,)))
-	return HttpResponse("You are awesome!")
 
 # class vote(generic.DetailView):
 # 	model=Question
